@@ -19,7 +19,7 @@ Create `.env` (copy from `.env.dist`) and modify.
 Add `php-apache` service IP to local hosts file, e. g. like
 
 ```shell script
-$ echo "172.20.1.3 typo3.localhost" >> /etc/hosts
+$ echo "172.20.1.3 typo3.docker" >> /etc/hosts
 ```
 
 ### Start Docker containers
@@ -44,7 +44,7 @@ Step 2: __Add PHP server__
 
 Open dialog Settings > Languages & Frameworks > PHP > Servers
 
-Create server and set host to `typo3.localhost`. Choose port `80` and debugger `Xdebug`.
+Create server and set host to `typo3.docker`. Choose port `80` and debugger `Xdebug`.
 
 Check `Use path mappings` and map local project file folder `./src/public` to absolute path on the server `/var/www/html`.
 
