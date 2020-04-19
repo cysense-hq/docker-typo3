@@ -3,13 +3,16 @@ version: "3.7"
 services:
 
   php-apache:
-    image: "php:${PHP_APACHE_VERSION}"
     container_name: ${PROJECT_KEY}-${ENV}-php-apache
+    build: ./docker/php-apache
     restart: always
-    ports:
-      - "8088:80"
     volumes:
       - ./src/public:/var/www/html
+    extra_hosts:
+      - "${TYPO3_HOSTNAME}:${DEV_SUBNET_PREFIX}.3"
+    environment:
+      XDEBUG_CONFIG: "remote_host=${DEV_SUBNET_PREFIX}.1"
+      PHP_IDE_CONFIG: "serverName=${TYPO3_HOSTNAME}"
     networks:
       backend:
         ipv4_address: ${DEV_SUBNET_PREFIX}.3
