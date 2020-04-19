@@ -67,7 +67,12 @@ Open dialog Settings > Languages & Frameworks > PHP > Servers
 
 Create server and set host to `typo3.docker`. Choose port `80` and debugger `Xdebug`.
 
-Check `Use path mappings` and map local project file folder `./src/public` to absolute path on the server `/var/www/html`.
+Check `Use path mappings` and map following local project files/folders to absolute path on the server:
+
+| Local file/folder | Absolute server path |
+| --- | --- |
+| `./docker/php-apache/typo3_src-8.7.32/typo3` | `/var/www/typo3_src-8.7.32/typo3` |
+| `./docker/php-apache/typo3_src-8.7.32/index.php` | `/var/www/typo3_src-8.7.32/index.php` |
 
 Step 3: __Start debugging__
 
