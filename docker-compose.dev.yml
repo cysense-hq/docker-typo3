@@ -2,8 +2,27 @@ version: "3.7"
 
 services:
 
+  mariadb:
+    image: "mariadb:${MARIADB_VERSION}"
+    container_name: "${PROJECT_KEY}-${ENV}-mariadb"
+    restart: always
+    volumes:
+      - ./docker/mariadb/init:/docker-entrypoint-initdb.d
+      - ./docker/mariadb/data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${MYSQL_DATABASE}"
+      MYSQL_USER: "${MYSQL_USER}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+      MYSQL_INITDB_SKIP_TZINFO: "yes"
+    networks:
+      backend:
+        ipv4_address: ${DEV_SUBNET_PREFIX}.2
+        aliases:
+          - mariadb
+
   php-apache:
-    container_name: ${PROJECT_KEY}-${ENV}-php-apache
+    container_name: "${PROJECT_KEY}-${ENV}-php-apache"
     build: ./docker/php-apache
     restart: always
     volumes:
