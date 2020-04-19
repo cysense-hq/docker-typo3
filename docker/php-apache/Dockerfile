@@ -6,6 +6,16 @@ ENV XDEBUG_PORT 10000
 
 WORKDIR /var/www
 
+RUN mkdir /var/www/typo3_src-8.7.32
+COPY typo3_src-8.7.32 /var/www/typo3_src-8.7.32/
+
+## Use absolut paths for symbolic link directories, not relative like described here
+## https://docs.typo3.org/m/typo3/guide-installation/master/en-us/QuickInstall/GetAndUnpack/Index.html
+RUN ln -s /var/www/typo3_src-8.7.32/ /var/www/html/typo3_src \
+    && ln -s typo3_src/index.php /var/www/html/index.php \
+    && ln -s typo3_src/typo3/ /var/www/html/typo3 \
+    && touch html/FIRST_INSTALL
+
 RUN pecl channel-update pecl.php.net \
     && pecl install "xdebug-${XDEBUG_VERSION}" \
     && docker-php-ext-enable xdebug \
@@ -31,12 +41,5 @@ RUN apt-get update \
     && apt-get install -y libicu-dev \
     && docker-php-ext-install intl \
     && docker-php-ext-install calendar
-
-# Use absolut paths for symbolic link directories, not relative like described here
-# https://docs.typo3.org/m/typo3/guide-installation/master/en-us/QuickInstall/GetAndUnpack/Index.html
-RUN ln -s /var/www/typo3_src/ /var/www/html/typo3_src \
-    && ln -s typo3_src/index.php /var/www/html/index.php \
-    && ln -s typo3_src/typo3/ /var/www/html/typo3 \
-    && touch html/FIRST_INSTALL
 
 RUN usermod -u 1000 www-data

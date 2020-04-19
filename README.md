@@ -4,9 +4,10 @@ Easy customizable TYPO3 Docker boilerplate for local development
 
 Supports:
 
-* Apache HTTP server
+* Apache HTTP Server 2.4.38
 * PHP 7.3
-* MariaDB
+* Xdebug 2.9.4
+* MariaDB 10.1
 
 ## Installation
 
@@ -43,6 +44,12 @@ $ docker-compose -f docker-compose.dev.yml up --build
 ### TYPO3 install tool
 
 Open `http://typo3.docker/typo3/install.php`
+
+Follow installation steps in [TYPO3 documentation](https://docs.typo3.org/m/typo3/guide-installation/master/en-us/QuickInstall/TheInstallTool/Index.html)
+
+Use database credentials of `.env` file and host `mariadb` and finish installation.
+
+Installation done!
 
 ## Debugging
 
