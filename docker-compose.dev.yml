@@ -1,0 +1,104 @@
+version: "3.7"
+
+services:
+
+  php-apache:
+    image: "php:${PHP_APACHE_VERSION}"
+    container_name: ${PROJECT_KEY}-${ENV}-php-apache
+    restart: always
+    ports:
+      - "8088:80"
+    volumes:
+      - ./src/public:/var/www/html
+    networks:
+      backend:
+        ipv4_address: ${DEV_SUBNET_PREFIX}.3
+
+#  php-apache:
+#    container_name: ${PROJECT_KEY}-${ENV}-php-apache
+#    build: ./ops/docker/php-apache
+#    restart: always
+#    ports:
+#      - "80:80"
+#    extra_hosts:
+#      - "entega.localhost:${DEV_SUBNET_PREFIX}.3"
+#      - "api.entega.localhost:${DEV_SUBNET_PREFIX}.3"
+#    #    environment:
+#    #      XDEBUG_CONFIG: "remote_host=${MARIADB_VERSION}.1"
+#    #      PHP_IDE_CONFIG: "serverName=docker-ent"
+#    volumes:
+#      - ./ent-www-typo3:/var/www/entega.local
+#      - ./entega-shop:/var/www/api.entega.local
+#      - ./ops/docker/php-apache/ports.conf:/etc/apache2/ports.conf:ro
+#      - ./ops/docker/php-apache/php-ini-overrides.ini:/usr/local/etc/php/conf.d/99-overrides.ini
+#      - ./ops/docker/php-apache/log:/var/log
+#      - ./typo3_src-8.7.30:/var/www/entega.local/typo3_src
+#      - ./var/fileadmin/bilder:/var/www/entega.local/htdocs/fileadmin/bilder
+#      - ./var/fileadmin/downloads:/var/www/entega.local/htdocs/fileadmin/downloads
+#      - ./var/fileadmin/images:/var/www/entega.local/htdocs/fileadmin/images
+#      - ./var/uploads:/var/www/entega.local/htdocs/uploads
+#      - ./var/typo3temp:/var/www/entega.local/htdocs/typo3temp
+#      - ./var/user-uploads:/var/www/entega.local/user-uploads
+#    networks:
+#      backend:
+#        ipv4_address: ${DEV_SUBNET_PREFIX}.3
+
+#  nginx:
+#    container_name: ${PROJECT_KEY}-${ENV}-nginx
+#    restart: always
+#    volumes:
+#      - ./:/opt/
+#      - ./ops/docker/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
+#    networks:
+#      backend:
+#        ipv4_address: ${DEV_SUBNET_PREFIX}.3
+
+#  php:
+#    build:
+#      context: ./ops/docker/php/${ENV}/
+#    image: php:7.3-fpm-alpine-${PROJECT_KEY}-${ENV}
+#    container_name: ${PROJECT_KEY}-${ENV}-php
+#    restart: always
+#    volumes:
+#      - ./:/opt/
+#    environment:
+#      XDEBUG_CONFIG: "remote_host=${PHP_XDEBUG_REMOTE_HOST}"
+#      PHP_IDE_CONFIG: "serverName=${PHP_IDE_SERVER_NAME}"
+#    networks:
+#      backend:
+#        ipv4_address: ${DEV_SUBNET_PREFIX}.4
+
+#  apache:
+#    build: ./docker/php-apache
+#    ports:
+#      - "8088:8088"
+#    extra_hosts:
+#      - "entega.local:127.0.0.1"
+#      - "api.entega.local:127.0.0.1"
+#    environment:
+#      XDEBUG_CONFIG: "remote_host=172.23.0.1"
+#      PHP_IDE_CONFIG: "serverName=docker-ent"
+#    volumes:
+#      - ./ent-www-typo3:/var/www/entega.local
+#      - ./entega-shop:/var/www/api.entega.local
+#      - ./docker/php-apache/php-ini-overrides.ini:/usr/local/etc/php/conf.d/99-overrides.ini
+#      - ./docker/php-apache/log:/var/log
+#      - ./typo3_src-6.2.31:/var/www/entega.local/typo3_src
+#      - ./var/fileadmin/bilder:/var/www/entega.local/htdocs/fileadmin/bilder
+#      - ./var/fileadmin/downloads:/var/www/entega.local/htdocs/fileadmin/downloads
+#      - ./var/fileadmin/flash:/var/www/entega.local/htdocs/fileadmin/flash
+#      - ./var/fileadmin/images:/var/www/entega.local/htdocs/fileadmin/images
+#      - ./var/uploads:/var/www/entega.local/htdocs/uploads
+#      - ./var/typo3temp:/var/www/entega.local/htdocs/typo3temp
+#      - ./var/user-uploads:/var/www/entega.local/user-uploads
+#    links:
+#      - mysql
+
+networks:
+  backend:
+    name: ${PROJECT_KEY}_${ENV}-backend
+    external: false
+    ipam:
+      config:
+        - subnet: "${DEV_SUBNET_PREFIX}.0/24"
+
