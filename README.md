@@ -1,6 +1,6 @@
-TYPO3 Docker Boilerplate
+[TYPO3 Docker Boilerplate](https://github.com/cysense-hq/docker-typo3)
 
-Easy customizable TYPO3 Docker boilerplate for local development
+Easy customizable TYPO3 Docker boilerplate for local development.
 
 Supports:
 
@@ -9,13 +9,12 @@ Supports:
 * Xdebug 2.9.4
 * MariaDB 10.1
 
-## Installation
+## Installation without Composer
 
 ### Download TYPO3
 
-Installation without Composer.
-
 ```shell script
+$ cd docker/php-apache
 $ wget --content-disposition https://get.typo3.org/8.7.32
 $ tar xzf typo3_src-8.7.32.tar.gz
 $ rm typo3_src-8.7.32.tar.gz
@@ -45,7 +44,7 @@ $ docker-compose -f docker-compose.dev.yml up --build
 
 Open `http://typo3.docker/typo3/install.php`
 
-Follow installation steps in [TYPO3 documentation](https://docs.typo3.org/m/typo3/guide-installation/master/en-us/QuickInstall/TheInstallTool/Index.html)
+Follow installation steps in [TYPO3 documentation - The Install Tool](https://docs.typo3.org/m/typo3/guide-installation/master/en-us/QuickInstall/TheInstallTool/Index.html)
 
 Use database credentials of `.env` file and host `mariadb` and finish installation.
 
@@ -72,6 +71,7 @@ Check `Use path mappings` and map following local project files/folders to absol
 | Local file/folder | Absolute server path |
 | --- | --- |
 | `./docker/php-apache/typo3_src-8.7.32/typo3` | `/var/www/typo3_src-8.7.32/typo3` |
+| `./docker/php-apache/typo3_src-8.7.32/vendor` | `/var/www/typo3_src-8.7.32/vendor` |
 | `./docker/php-apache/typo3_src-8.7.32/index.php` | `/var/www/typo3_src-8.7.32/index.php` |
 
 Step 3: __Start debugging__
