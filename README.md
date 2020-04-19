@@ -10,6 +10,16 @@ Supports:
 
 ## Installation
 
+### Download TYPO3
+
+Installation without Composer.
+
+```shell script
+$ wget --content-disposition https://get.typo3.org/8.7.32
+$ tar xzf typo3_src-8.7.32.tar.gz
+$ rm typo3_src-8.7.32.tar.gz
+```
+
 ### Environment variables
 
 Create `.env` (copy from `.env.dist`) and modify.
@@ -29,6 +39,10 @@ Build and start the Docker containers with:
 ```shell script
 $ docker-compose -f docker-compose.dev.yml up --build
 ```
+
+### TYPO3 install tool
+
+Open `http://typo3.docker/typo3/install.php`
 
 ## Debugging
 

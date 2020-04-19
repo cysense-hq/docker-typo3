@@ -1,1 +1,9 @@
 .env
+typo3_src-*
+src/public/index.php
+src/public/typo3
+src/public/typo3_src
+src/public/FIRST_INSTALL
+
+# Project specific IDE settings
+.idea

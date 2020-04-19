@@ -27,6 +27,8 @@ services:
     restart: always
     volumes:
       - ./src/public:/var/www/html
+      - ./typo3_src-8.7.32:/var/www/typo3_src
+      - ./docker/php-apache/php/php-ini-overrides.ini:/usr/local/etc/php/conf.d/99-overrides.ini
     extra_hosts:
       - "${TYPO3_HOSTNAME}:${DEV_SUBNET_PREFIX}.3"
     environment:
