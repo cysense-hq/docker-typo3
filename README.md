@@ -24,6 +24,11 @@ $ rm typo3_src-8.7.32.tar.gz
 
 Create `.env` (copy from `.env.dist`) and modify.
 
+```shell script
+$ cp .env.dist .env
+$ vim .env
+```
+
 ### Local hosts file
 
 Add `php-apache` service IP to local hosts file, e. g. like
