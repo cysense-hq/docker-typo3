@@ -25,7 +25,9 @@ RUN pecl channel-update pecl.php.net \
     && echo "xdebug.remote_host=localhost" >> /usr/local/etc/php/conf.d/xdebug.ini \
     && echo "xdebug.remote_port=${XDEBUG_PORT}" >> /usr/local/etc/php/conf.d/xdebug.ini \
     && echo "xdebug.remote_connect_back=0" >> /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo "xdebug.remote_log=/var/log/xdebug.log" >> /usr/local/etc/php/conf.d/xdebug.ini
+    && echo "xdebug.remote_log=/var/log/xdebug.log" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && touch /var/log/xdebug.log \
+    && chown www-data:www-data /var/log/xdebug.log
 
 RUN apt-get update \
     && apt-get install -y git zip libzip-dev unzip \

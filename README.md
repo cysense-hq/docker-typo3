@@ -50,6 +50,14 @@ Use database credentials of `.env` file and host `mariadb` and finish installati
 
 Installation done!
 
+## Log files
+
+| Service | Log file |
+| --- | --- |
+| PHP | `STDOUT` |
+| Xdebug | `/var/log/xdebug.log` |
+| TYPO3 | `/var/www/html/typo3temp/var/logs/...` |
+
 ## Debugging
 
 ### Xdebug with PhpStorm
@@ -77,4 +85,3 @@ Check `Use path mappings` and map following local project files/folders to absol
 Step 3: __Start debugging__
 
 Set breakpoint in PHP source code (e. g. in file `index.php`) and start debug connection (e. g. in menu `Run`, item `Start Listening for PHP Debug Connection`).
-
