@@ -7,6 +7,16 @@ src/public/typo3_src
 src/public/FIRST_INSTALL
 typo3_src-*
 
+# TYPO3
+src/fileadmin/*
+!src/fileadmin/.gitkeep
+src/typo3conf
+!src/typo3conf/.gitkeep
+src/typo3temp
+!src/typo3temp/.gitkeep
+src/uploads
+!src/uploads/.gitkeep
+
 # Project specific IDE settings
 .idea
 

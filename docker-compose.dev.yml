@@ -27,7 +27,11 @@ services:
     build: ./docker/php-apache
     restart: always
     volumes:
-      - ./docker/php-apache/php/php-ini-overrides.ini:/usr/local/etc/php/conf.d/99-overrides.ini
+      - ./docker/php-apache/php/php-ini-overrides.ini:/usr/local/etc/php/conf.d/zz-overrides.ini
+      - ./src/fileadmin:/var/www/html/fileadmin
+      - ./src/typo3conf:/var/www/html/typo3conf
+      - ./src/typo3temp:/var/www/html/typo3temp
+      - ./src/uploads:/var/www/html/uploads
     extra_hosts:
       - "${TYPO3_HOSTNAME}:${DEV_SUBNET_PREFIX}.3"
     environment:
