@@ -1,5 +1,8 @@
 .env
-docker/mariadb/data
+docker/mariadb/data/*
+!docker/mariadb/data/.gitkeep
+docker/mariadb/init/*
+!docker/mariadb/init/.gitkeep
 docker/php-apache/typo3_src-*
 src/public/index.php
 src/public/typo3
